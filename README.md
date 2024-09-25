@@ -17,6 +17,7 @@
 | subnets           | Subnet object containing a list of subnets in the target project               | `any`         | `null`            |    no    |
 | tags              | Maps of tags that will be applied to the resource                              | `map(string)` | `{}`              |    no    |
 | userDefinedString | (Required) UserDefinedString value for the name of the resource                | `string`      | n/a               |   yes    |
+| ase               | Object containing a map of ASE ID to link the App Servicce Plan                | `any`         | `null`            |    no    |
 
 ## Outputs
 

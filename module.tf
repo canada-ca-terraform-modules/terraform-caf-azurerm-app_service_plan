@@ -4,7 +4,7 @@ resource "azurerm_service_plan" "servicePlan" {
   resource_group_name = local.resource_group_name
   os_type = var.appServicePlan.os_type
   sku_name = var.appServicePlan.sku_name
-  app_service_environment_id = local.ase == null ? data.azurerm_app_service_environment_v3.ase[0].id : local.ase    # This is Required for our setup
+  app_service_environment_id = local.ase
 
   # Optional parameters
   maximum_elastic_worker_count = try(var.appServicePlan.maximum_elastic_worker_count, null)
@@ -17,8 +17,8 @@ resource "azurerm_service_plan" "servicePlan" {
 }
 
 # If local.ase is null, then we need to do a data call to find the ID.
-data "azurerm_app_service_environment_v3" "ase" {
-  count = local.ase == null ? 1 : 0
-  name = replace("${var.env}-${var.group}-${var.project}-${var.appServicePlan.ase.name}-ase", "/[//\"'\\[\\]:|<>+=;,?*@&]/", "")
-  resource_group_name = local.ase_rg
-}
+# data "azurerm_app_service_environment_v3" "ase" {
+#   count = local.ase == null ? 1 : 0
+#   name = replace("${var.env}-${var.group}-${var.project}-${var.appServicePlan.ase.name}-ase", "/[//\"'\\[\\]:|<>+=;,?*@&]/", "")
+#   resource_group_name = local.ase_rg
+# }

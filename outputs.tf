@@ -3,12 +3,12 @@ output "appServicePlan-object" {
   value = azurerm_service_plan.servicePlan
 }
 
-output "id" {
+output "asp_id" {
   description = "Outputs the ID of the App Service Plan"
   value = azurerm_service_plan.servicePlan.id
 }
 
-output "name" {
+output "asp_name" {
   description = "Outputs the name of the App Service Plan"
   value = azurerm_service_plan.servicePlan.name
 }

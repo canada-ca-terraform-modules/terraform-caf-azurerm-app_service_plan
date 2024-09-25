@@ -42,6 +42,12 @@ variable "subnets" {
   default = null
 }
 
+variable "ase" {
+  description = "Object containing a map of ASE ID to link the App Servicce Plan"
+  type = any
+  default = null
+}
+
 variable "appServicePlan" {
   description = "Object containing all parameters for the app service Plan"
   type = any
