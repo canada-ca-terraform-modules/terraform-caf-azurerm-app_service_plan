@@ -10,7 +10,7 @@ resource "azurerm_service_plan" "servicePlan" {
   maximum_elastic_worker_count = try(var.appServicePlan.maximum_elastic_worker_count, null)
   worker_count = try(var.appServicePlan.worker_count, 3)
   per_site_scaling_enabled = try(var.appServicePlan.per_site_scaling_enabled, false)
-  zone_balancing_enabled = try(var.appServicePlan.zone_balancing_enabled, true)
+  zone_balancing_enabled = try(var.appServicePlan.zone_balancing_enabled, false)
 
   tags = merge(var.tags, try(var.appServicePlan.tags, {}))
 
