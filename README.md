@@ -1,8 +1,12 @@
+# terraform-caf-azurerm-app_service_plan
+
+Manages an Azure App Service Plan (`azurerm_service_plan`).
+
 ## Providers
 
 | Name    | Version |
 | ------- | ------- |
-| azurerm | 4.0.0   |
+| azurerm | ~> 4.0  |
 
 ## Inputs
 
@@ -17,34 +21,39 @@
 | subnets           | Subnet object containing a list of subnets in the target project               | `any`         | `null`            |    no    |
 | tags              | Maps of tags that will be applied to the resource                              | `map(string)` | `{}`              |    no    |
 | userDefinedString | (Required) UserDefinedString value for the name of the resource                | `string`      | n/a               |   yes    |
-| ase               | Object containing a map of ASE ID to link the App Servicce Plan                | `any`         | `null`            |    no    |
+| ase               | Object containing a map of ASE ID to link the App Service Plan                 | `any`         | `null`            |    no    |
 
 ## Outputs
 
 | Name                  | Description                                |
 | --------------------- | ------------------------------------------ |
 | appServicePlan-object | Outputs the entire App Service Plan object |
-| id                    | Outputs the ID of the App Service Plan     |
-| name                  | Outputs the name of the App Service Plan   |
+| asp\_id               | Outputs the ID of the App Service Plan     |
+| asp\_name             | Outputs the name of the App Service Plan   |
 
 ## TFVARS Parameter
 
-| Name                         | Possible value | Default | Required |
-| ---------------------------- | -------------- | ------- | -------- |
-| zone_balancing_enabled       | true,false     | true    | no       |
-| maximum_elastic_worker_count | int            | null    | no       |
-| worker_count                 | int            | 2       | no       |
-| per_site_scaling_enabled     | true,false     | false   | no       |
+| Name                            | Possible value | Default | Required |
+| ------------------------------- | -------------- | ------- | -------- |
+| zone\_balancing\_enabled        | true,false     | false   | no       |
+| maximum\_elastic\_worker\_count | int            | null    | no       |
+| worker\_count                   | int            | 3       | no       |
+| per\_site\_scaling\_enabled     | true,false     | false   | no       |
+| premium\_plan\_auto\_scale\_enabled | true,false | false   | no       |
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4.0 |
 
 ## Modules
 

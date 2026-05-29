@@ -1,55 +1,56 @@
 variable "tags" {
   description = "Maps of tags that will be applied to the resource"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
 variable "env" {
   description = "(Required) Env value for the name of the resource"
-  type = string
+  type        = string
 }
 
 variable "group" {
   description = "(Required) Group value for the name of the resource"
-  type = string
+  type        = string
 }
 
 variable "project" {
   description = "(Required) Project value for the name of the resource"
-  type = string
+  type        = string
 }
 
 variable "userDefinedString" {
   description = "(Required) UserDefinedString value for the name of the resource"
-  type = string
+  type        = string
 }
 
 variable "location" {
   description = "Azure location for the resource"
-  type = string
-  default = "canadacentral"
+  type        = string
+  default     = "canadacentral"
 }
 
 variable "resource_groups" {
   description = "Resouce group object containing a list of resource group in the target project"
-  type = any
-  default = null
+  type        = any
+  default     = null
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "subnets" {
   description = "Subnet object containing a list of subnets in the target project"
-  type = any
-  default = null
+  type        = any
+  default     = null
 }
 
 variable "ase" {
   description = "Object containing a map of ASE ID to link the App Servicce Plan"
-  type = any
-  default = null
+  type        = any
+  default     = null
 }
 
 variable "appServicePlan" {
   description = "Object containing all parameters for the app service Plan"
-  type = any
-  default = {}
+  type        = any
+  default     = {}
 }
