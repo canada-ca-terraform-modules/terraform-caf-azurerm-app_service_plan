@@ -9,7 +9,7 @@ variable "AppServicePlan" {
 }
 
 module "AppServicePlan" {
-  source   = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.1.0"
+  source   = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.2.0"
   for_each = var.AppServicePlan
 
   userDefinedString = each.key
