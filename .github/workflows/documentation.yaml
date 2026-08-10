@@ -13,10 +13,14 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          # Pinned to the exact commit SHA (not the branch name) to avoid a
+          # force-push between trigger and checkout changing what gets committed.
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1.4.1

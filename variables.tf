@@ -31,7 +31,7 @@ variable "location" {
 }
 
 variable "resource_groups" {
-  description = "Resouce group object containing a list of resource group in the target project"
+  description = "Resource group object containing a list of resource group in the target project"
   type        = any
   default     = null
 }
@@ -44,7 +44,7 @@ variable "subnets" {
 }
 
 variable "ase" {
-  description = "Object containing a map of ASE ID to link the App Servicce Plan"
+  description = "Object containing a map of ASE ID to link the App Service Plan"
   type        = any
   default     = null
 }

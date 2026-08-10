@@ -88,6 +88,53 @@ run "zone_balancing_with_worker_count" {
   }
 }
 
+run "per_site_scaling_enabled" {
+  command = plan
+  variables {
+    appServicePlan = {
+      resource_group           = "Project"
+      os_type                  = "Linux"
+      sku_name                 = "P1v2"
+      per_site_scaling_enabled = true
+    }
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.per_site_scaling_enabled == true
+    error_message = "per_site_scaling_enabled must be settable"
+  }
+}
+
+run "worker_count_override" {
+  command = plan
+  variables {
+    appServicePlan = {
+      resource_group = "Project"
+      os_type        = "Linux"
+      sku_name       = "P1v2"
+      worker_count   = 6
+    }
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.worker_count == 6
+    error_message = "worker_count must be overridable away from its default of 3"
+  }
+}
+
+run "resource_group_full_arm_id" {
+  command = plan
+  variables {
+    appServicePlan = {
+      resource_group = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-external"
+      os_type        = "Linux"
+      sku_name       = "P1v2"
+    }
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.resource_group_name == "rg-external"
+    error_message = "resource_group must accept a full ARM ID and extract the resource group name from it"
+  }
+}
+
 run "with_ase" {
   command = plan
   variables {

@@ -10,9 +10,13 @@ on:
       - main
       - master
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.1
 
@@ -31,6 +35,7 @@ jobs:
 
   tflint:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.1
 
@@ -47,7 +52,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: validate
+    timeout-minutes: 15
+    needs: [validate, tflint]
     steps:
       - uses: actions/checkout@v7.0.1
 
