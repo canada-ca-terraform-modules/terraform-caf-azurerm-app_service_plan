@@ -14,9 +14,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.1
 
-      - uses: hashicorp/setup-terraform@v4.0.0
+      - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_wrapper: false
 
@@ -32,12 +32,12 @@ jobs:
   tflint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.1
 
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v4
+        uses: terraform-linters/setup-tflint@v6.3.0
         with:
-          tflint_version: v0.61.0
+          tflint_version: v0.64.0
 
       - name: Init TFLint
         run: tflint --init
@@ -49,9 +49,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: validate
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.1
 
-      - uses: hashicorp/setup-terraform@v4.0.0
+      - uses: hashicorp/setup-terraform@v4.0.1
         with:
           terraform_wrapper: false
 

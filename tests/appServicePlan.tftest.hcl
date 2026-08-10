@@ -106,3 +106,40 @@ run "with_ase" {
     error_message = "app_service_environment_id must be set when ase is provided"
   }
 }
+
+run "maximum_elastic_worker_count" {
+  command = plan
+  variables {
+    appServicePlan = {
+      resource_group               = "Project"
+      os_type                      = "Linux"
+      sku_name                     = "EP1"
+      maximum_elastic_worker_count = 5
+    }
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.maximum_elastic_worker_count == 5
+    error_message = "maximum_elastic_worker_count must be settable"
+  }
+}
+
+run "tags_merge" {
+  command = plan
+  variables {
+    tags = { managed_by = "terraform" }
+    appServicePlan = {
+      resource_group = "Project"
+      os_type        = "Linux"
+      sku_name       = "P1v2"
+      tags           = { app = "myapp" }
+    }
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.tags["managed_by"] == "terraform"
+    error_message = "Module-level tags must be merged onto the resource"
+  }
+  assert {
+    condition     = azurerm_service_plan.servicePlan.tags["app"] == "myapp"
+    error_message = "appServicePlan.tags must be merged onto the resource"
+  }
+}
