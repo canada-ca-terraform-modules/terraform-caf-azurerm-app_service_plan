@@ -2,12 +2,6 @@
 
 Manages an Azure App Service Plan (`azurerm_service_plan`).
 
-## Providers
-
-| Name    | Version |
-| ------- | ------- |
-| azurerm | ~> 4.0  |
-
 ## Inputs
 
 | Name              | Description                                                                    | Type          | Default           | Required |
@@ -17,7 +11,7 @@ Manages an Azure App Service Plan (`azurerm_service_plan`).
 | group             | (Required) Group value for the name of the resource                            | `string`      | n/a               |   yes    |
 | location          | Azure location for the resource                                                | `string`      | `"canadacentral"` |    no    |
 | project           | (Required) Project value for the name of the resource                          | `string`      | n/a               |   yes    |
-| resource\_groups  | Resouce group object containing a list of resource group in the target project | `any`         | `null`            |    no    |
+| resource\_groups  | Resource group object containing a list of resource group in the target project | `any`         | `null`            |    no    |
 | subnets           | Subnet object containing a list of subnets in the target project               | `any`         | `null`            |    no    |
 | tags              | Maps of tags that will be applied to the resource                              | `map(string)` | `{}`              |    no    |
 | userDefinedString | (Required) UserDefinedString value for the name of the resource                | `string`      | n/a               |   yes    |
@@ -33,8 +27,14 @@ Manages an Azure App Service Plan (`azurerm_service_plan`).
 
 ## TFVARS Parameter
 
+Keys inside the `appServicePlan` object (`ESLZ/appServicePlan.tfvars` value):
+
 | Name                            | Possible value | Default | Required |
 | ------------------------------- | -------------- | ------- | -------- |
+| resource\_group                 | string         | n/a     | yes      |
+| os\_type                        | Linux,Windows  | n/a     | yes      |
+| sku\_name                       | string         | n/a     | yes      |
+| ase                              | string         | null    | no       |
 | zone\_balancing\_enabled        | true,false     | false   | no       |
 | maximum\_elastic\_worker\_count | int            | null    | no       |
 | worker\_count                   | int            | 3       | no       |
@@ -47,13 +47,13 @@ Manages an Azure App Service Plan (`azurerm_service_plan`).
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 5.0 |
 
 ## Modules
 
@@ -70,12 +70,12 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_appServicePlan"></a> [appServicePlan](#input\_appServicePlan) | Object containing all parameters for the app service Plan | `any` | `{}` | no |
-| <a name="input_ase"></a> [ase](#input\_ase) | Object containing a map of ASE ID to link the App Servicce Plan | `any` | `null` | no |
+| <a name="input_ase"></a> [ase](#input\_ase) | Object containing a map of ASE ID to link the App Service Plan | `any` | `null` | no |
 | <a name="input_env"></a> [env](#input\_env) | (Required) Env value for the name of the resource | `string` | n/a | yes |
 | <a name="input_group"></a> [group](#input\_group) | (Required) Group value for the name of the resource | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | Azure location for the resource | `string` | `"canadacentral"` | no |
 | <a name="input_project"></a> [project](#input\_project) | (Required) Project value for the name of the resource | `string` | n/a | yes |
-| <a name="input_resource_groups"></a> [resource\_groups](#input\_resource\_groups) | Resouce group object containing a list of resource group in the target project | `any` | `null` | no |
+| <a name="input_resource_groups"></a> [resource\_groups](#input\_resource\_groups) | Resource group object containing a list of resource group in the target project | `any` | `null` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | Subnet object containing a list of subnets in the target project | `any` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Maps of tags that will be applied to the resource | `map(string)` | `{}` | no |
 | <a name="input_userDefinedString"></a> [userDefinedString](#input\_userDefinedString) | (Required) UserDefinedString value for the name of the resource | `string` | n/a | yes |

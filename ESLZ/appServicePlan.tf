@@ -9,19 +9,23 @@ variable "AppServicePlan" {
 }
 
 module "AppServicePlan" {
-  source   = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.1.0"
+  source   = "github.com/canada-ca-terraform-modules/terraform-caf-azurerm-app_service_plan.git?ref=v1.2.0"
   for_each = var.AppServicePlan
 
   userDefinedString = each.key
   env               = var.env
   group             = var.group
   project           = var.project
-  resource_groups   = local.resource_groups_all
-  subnets           = local.subnets
-  ase               = local.ase_id
-  appServicePlan    = each.value
-  tags              = var.tags
+  # local.resource_groups_all, local.subnets, and local.ase_id are expected to be
+  # defined by the calling ESLZ blueprint layer (L1/L2) that includes this file -
+  # they are not declared here since they are shared across every ESLZ/*.tf module.
+  resource_groups = local.resource_groups_all
+  subnets         = local.subnets
+  ase             = local.ase_id
+  appServicePlan  = each.value
+  tags            = var.tags
 }
+
 
 # Example: collect ASP IDs for use in downstream modules (e.g. azurerm_linux_web_app)
 locals {

@@ -16,10 +16,3 @@ resource "azurerm_service_plan" "servicePlan" {
   tags = merge(var.tags, try(var.appServicePlan.tags, {}))
 
 }
-
-# If local.ase is null, then we need to do a data call to find the ID.
-# data "azurerm_app_service_environment_v3" "ase" {
-#   count = local.ase == null ? 1 : 0
-#   name = replace("${var.env}-${var.group}-${var.project}-${var.appServicePlan.ase.name}-ase", "/[//\"'\\[\\]:|<>+=;,?*@&]/", "")
-#   resource_group_name = local.ase_rg
-# }
