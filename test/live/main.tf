@@ -1,3 +1,4 @@
+# no-op: touches test/live/** so PR B's path-filtered live-test trigger fires
 terraform {
   required_version = ">= 1.9"
   required_providers {
